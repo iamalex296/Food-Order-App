@@ -5,7 +5,7 @@ import classes from "./Checkout.module.css";
 const isEmpty = (value) => value.trim() === "";
 const isFiveChars = (value) => value.trim().length === 5;
 
-const Checkout = ({ onCancel }) => {
+const Checkout = ({ onCancel, onSubmit }) => {
   const [formInputsValidity, setformInputsValidity] = useState({
     name: true,
     street: true,
@@ -47,6 +47,12 @@ const Checkout = ({ onCancel }) => {
     if (!formIsValid) {
       return;
     }
+    onSubmit({
+      name: enteredName,
+      street: enteredStreet,
+      city: enteredCity,
+      postalCode: enteredPostalCode,
+    });
   };
 
   const nameControlClasses = `${classes.control} ${
